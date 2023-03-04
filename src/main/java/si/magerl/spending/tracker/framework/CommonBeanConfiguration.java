@@ -1,19 +1,20 @@
 package si.magerl.spending.tracker.framework;
 
-import com.google.cloud.bigquery.BigQuery;
-import com.google.cloud.bigquery.BigQueryOptions;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.UUID;
+import java.util.function.Supplier;
+import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Singleton;
 
 public class CommonBeanConfiguration {
 
     @Singleton
-    public BigQuery bigQuery() {
-        return BigQueryOptions.getDefaultInstance().getService();
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
-    @Singleton
-    public Gson gson() {
-        return new Gson();
+    @ApplicationScoped
+    public Supplier<String> idGenerator() {
+        return () -> UUID.randomUUID().toString();
     }
 }

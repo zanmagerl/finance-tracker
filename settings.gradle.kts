@@ -1,4 +1,4 @@
-rootProject.name = "spending-tracker"
+rootProject.name = "finance-tracker"
 
 pluginManagement {
     repositories {
