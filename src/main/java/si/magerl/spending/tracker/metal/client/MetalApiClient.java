@@ -13,7 +13,6 @@ public interface MetalApiClient {
     @Path("/latest")
     @ClientQueryParam(name = "base", value = "XAU")
     @ClientQueryParam(name = "currencies", value = "EUR")
-    // TODO: Connect to GCP's Secret Manager to retrieve API token
-    @ClientQueryParam(name = "api_key", value = "value-from-secret-manager")
+    @ClientQueryParam(name = "api_key", value = "${finance.tracker.metalprice-api.token}")
     MetalAPIResponse getGoldPrice();
 }

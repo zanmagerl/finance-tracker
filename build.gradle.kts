@@ -33,6 +33,7 @@ dependencies {
     implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-bigquery:$quarkusGoogleCloudServicesVersion")
     implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-logging:$quarkusGoogleCloudServicesVersion")
     implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-firebase-admin:$quarkusGoogleCloudServicesVersion")
+    implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-secret-manager:$quarkusGoogleCloudServicesVersion")
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
 
     // Google dependencies
