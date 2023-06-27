@@ -27,6 +27,7 @@ dependencies {
     implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusVersion"))
     implementation("io.quarkus:quarkus-resteasy-reactive")
     implementation("io.quarkus:quarkus-resteasy-reactive-jackson")
+    implementation("io.quarkus:quarkus-rest-client-reactive-jackson")
     implementation("io.quarkus:quarkus-security")
     implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-firestore:$quarkusGoogleCloudServicesVersion")
     implementation("io.quarkiverse.googlecloudservices:quarkus-google-cloud-bigquery:$quarkusGoogleCloudServicesVersion")
