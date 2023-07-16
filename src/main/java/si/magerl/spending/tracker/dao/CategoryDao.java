@@ -8,7 +8,7 @@ public interface CategoryDao extends GenericDao<Category> {
 
     List<Category> getUsersCategories(User user);
 
-    String createNewUserCategory(User user, String name);
+    Category createNewUserCategory(User user, String name);
 
     List<Category> getUserCategoriesByName(User user, String name);
 }

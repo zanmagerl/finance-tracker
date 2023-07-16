@@ -10,5 +10,5 @@ import lombok.experimental.SuperBuilder;
 public class Category extends BaseEntity {
 
     String creatorUid;
-    String categoryName;
+    String name;
 }

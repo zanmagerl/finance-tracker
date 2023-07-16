@@ -8,5 +8,5 @@ public interface ExpenseDao extends GenericDao<Expense> {
 
     List<Expense> getUsersSpendingRecords(User user);
 
-    void deleteUserRecord(User user, String id);
+    void deleteUsersExpense(User user, String id);
 }

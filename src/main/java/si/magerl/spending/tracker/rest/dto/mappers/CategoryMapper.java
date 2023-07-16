@@ -9,10 +9,8 @@ import si.magerl.spending.tracker.rest.dto.CategoryDTO;
 public interface CategoryMapper {
 
     @Mapping(source = "creatorUid", target = "uid")
-    @Mapping(source = "categoryName", target = "name")
     CategoryDTO toDTO(Category category);
 
     @Mapping(source = "uid", target = "creatorUid")
-    @Mapping(source = "name", target = "categoryName")
     Category fromDTO(CategoryDTO categoryDTO);
 }

@@ -1,5 +1,6 @@
 package si.magerl.spending.tracker.services;
 
+import java.util.List;
 import java.util.function.Supplier;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -28,22 +29,28 @@ public class ExpenseProcessingService {
         bigQueryDao.save(spendingRecord);
     }
 
+    public void processExpenses(User user, List<ExpenseDTO> expenseDTOList) {
+        expenseDTOList.forEach(expenseDTO -> this.processExpense(user, expenseDTO));
+    }
+
     private Expense prepareExpense(ExpenseDTO expense, User user) {
-        String categoryId = getCategoryId(user, expense);
+        String categoryName = getCategoryName(user, expense);
         return Expense.builder()
                 .id(idGenerator.get())
                 .email(user.getEmail())
                 .description(expense.description())
                 .date(expense.date())
-                .categoryId(categoryId)
+                .category(categoryName)
                 .amount(expense.amount())
                 .build();
     }
 
-    private String getCategoryId(User user, ExpenseDTO expenseDTO) {
-        return categoryDao.getUserCategoriesByName(user, expenseDTO.category()).stream()
+    private String getCategoryName(User user, ExpenseDTO expenseDTO) {
+        return categoryDao.getUserCategoriesByName(user, expenseDTO.category().toLowerCase()).stream()
                 .findFirst()
-                .map(Category::getId)
-                .orElseGet(() -> categoryDao.createNewUserCategory(user, expenseDTO.category()));
+                .map(Category::getName)
+                .orElseGet(() -> categoryDao
+                        .createNewUserCategory(user, expenseDTO.category().toLowerCase())
+                        .getName());
     }
 }

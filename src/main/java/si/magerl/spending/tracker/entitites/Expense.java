@@ -13,7 +13,7 @@ public class Expense extends BaseEntity {
 
     String email;
     String description;
-    String categoryId;
+    String category;
     Long date;
     Double amount;
 }

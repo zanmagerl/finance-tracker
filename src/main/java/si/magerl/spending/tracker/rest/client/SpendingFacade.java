@@ -34,15 +34,24 @@ public class SpendingFacade {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public void saveSpendingRecord(@Context SecurityContext securityContext, ExpenseDTO spendingRecord) {
+    public void saveExpense(@Context SecurityContext securityContext, ExpenseDTO spendingRecord) {
         log.info("Received: {}", spendingRecord);
         expenseProcessingService.processExpense(
                 ((UserSecurityContext) securityContext).getUserPrincipal(), spendingRecord);
     }
 
+    @POST
+    @Path("/batch")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void saveExpenses(@Context SecurityContext securityContext, List<ExpenseDTO> spendingRecords) {
+        log.info("Received: {} records", spendingRecords.size());
+        expenseProcessingService.processExpenses(
+                ((UserSecurityContext) securityContext).getUserPrincipal(), spendingRecords);
+    }
+
     @DELETE
     @Path("/{id}")
     public void deleteSpendingRecord(@Context SecurityContext securityContext, @PathParam("id") String id) {
-        expenseDao.deleteUserRecord(((UserSecurityContext) securityContext).getUserPrincipal(), id);
+        expenseDao.deleteUsersExpense(((UserSecurityContext) securityContext).getUserPrincipal(), id);
     }
 }

@@ -23,7 +23,7 @@ public class ExpenseDaoImpl implements ExpenseDao {
     }
 
     @Override
-    public void deleteUserRecord(User user, String id) {
+    public void deleteUsersExpense(User user, String id) {
         List<Expense> spendingRecords = bigQueryDao.executeQuery(bigQueryDao
                 .query()
                 .filterEq("email", user.getEmail(), String.class)

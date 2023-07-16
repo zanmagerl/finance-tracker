@@ -26,20 +26,20 @@ public class CategoryDaoImpl implements CategoryDao {
     }
 
     @Override
-    public String createNewUserCategory(User user, String name) {
+    public Category createNewUserCategory(User user, String name) {
         Category category = Category.builder()
                 .id(idGenerator.get())
                 .creatorUid(user.getUid())
-                .categoryName(name)
+                .name(name)
                 .build();
         firestoreDao.saveWithId(category.getId(), category);
-        return category.getId();
+        return category;
     }
 
     @Override
     public List<Category> getUserCategoriesByName(User user, String name) {
         return firestoreDao.executeQuery(
-                firestoreDao.query().filterEq("creatorUid", user.getUid()).filterEq("categoryName", name));
+                firestoreDao.query().filterEq("creatorUid", user.getUid()).filterEq("name", name));
     }
 
     @Override
